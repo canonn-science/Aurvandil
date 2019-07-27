@@ -66,8 +66,9 @@ function updateScreen(json){
 function submitform(){
     var data = $(this).serializeArray();
     $("#result").text("Searching")
+    console.log(encodeURI('https://us-central1-canonn-api-236217.cloudfunctions.net/linkDecode?origin='+$('input:text').val()+'&message='+$("#data").val()))
   console.log("ping");
-fetch('https://us-central1-canonn-api-236217.cloudfunctions.net/linkDecode?origin=mel%2022%20sector%20kc-v%20d2-28&message=hlh%20hll%20lll%20/%20hhl%20lhh%20lhh%20;%20hll%20hhh%20hll%20hll%20/%20hhl%20lll%20lhl%20hhh%20;%20hlh%20hhl%20hhl%20lll%20/%20hhl%20lll%20lhl%20hhh')
+fetch(encodeURI('https://us-central1-canonn-api-236217.cloudfunctions.net/linkDecode?origin='+$('input:text').val()+'&message='+$("#data").val()))
     .then(response => response.json())
     .then(json => updateScreen(json))
 ;
@@ -83,7 +84,7 @@ fetch('https://us-central1-canonn-api-236217.cloudfunctions.net/linkDecode?origi
             </tr>
             <tr>
                 <td class="label"><label for="data">Decoded:</label></td>
-                <td><textarea placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001&#10;&#10;010 010 | 001 111 101&#10;011 111 | 001 111 101 000&#10;010 111 101 | 011 001 000&#10;&#10;010 010 111 | 001 111 101 000&#10;001 | 011 001&#10;001 110 101 001 | 001 111 101 000&#10;&#10;You can use either '010 100' or 'lhl lhh' syntax."
+                <td><textarea id="data" placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001&#10;&#10;010 010 | 001 111 101&#10;011 111 | 001 111 101 000&#10;010 111 101 | 011 001 000&#10;&#10;010 010 111 | 001 111 101 000&#10;001 | 011 001&#10;001 110 101 001 | 001 111 101 000&#10;&#10;You can use either '010 100' or 'lhl lhh' syntax."
                         name="data" id="data">hhl hlh llh lhl / lll llh lhh
 hlh hll lll / hhl lll lhl 
 hhl lll hhl / hhl lll lhl </textarea></td>

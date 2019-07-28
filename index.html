@@ -75,11 +75,14 @@ $( document ).ready(function() {
 
     if ( params.origin && params.data ) {
       //$(#form).submitForm();
-      console.log(params.origin);
-      console.log(params.data)
-      doDecode(params.origin,params.data);
-      $('input:text').val(params.origin);
-      $("#data").val(params.data);
+      
+      var origin=decodeURIComponent(params.origin).replace(/\+/g," ")
+      var data=decodeURIComponent(params.data).replace(/\+/g," ")
+      console.log(origin);
+      console.log(data)
+      doDecode(origin,data);
+      $('input:text').val(origin);
+      $("#data").val(data);
     }
    
 });

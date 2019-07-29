@@ -30,12 +30,12 @@ footer, header, hgroup, menu, nav, section {
 	display: block;}
 
 textarea {
-  width: 800px;
+  width: 100%;
   height: 220px;
 }
 
 input {
-  width: 800px;
+  width: 100%;
 }
 
 body {

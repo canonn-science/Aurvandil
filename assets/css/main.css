@@ -29,6 +29,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+textarea {
+  width: 800px;
+  height: 220px;
+}
+
+input {
+  width: 800px;
+}
+
 body {
 	line-height: 1;
 }
@@ -97,13 +106,13 @@ input, select, textarea {
 	*, *:before, *:after {
 		box-sizing: inherit;
 	}
-
+/*
 	html, body {
 		height: 100%;
 		overflow-x: hidden;
 		width: 100%;
 	}
-
+*/
 		@media screen and (max-height: 640px) {
 
 			html, body {
@@ -314,10 +323,10 @@ input, select, textarea {
 
 /* Type */
 
-	body, input, select, textarea {
+     body, input, select, textarea {
 		color: rgba(255, 255, 255, 0.75);
 		font-family: "Roboto", sans-serif;
-		font-size: 16pt;
+		font-size: 12pt;
 		font-weight: 400;
 		letter-spacing: -0.01em;
 		line-height: 1.65em;
@@ -486,7 +495,7 @@ input, select, textarea {
 		hr.major {
 			margin: 3em 0;
 		}
-
+*/
 /* Section/Article */
 
 	section.special, article.special {
@@ -628,7 +637,7 @@ input, select, textarea {
 			}
 
 /* Form */
-
+/*
 	form {
 		margin: 0 0 2em 0;
 	}
@@ -688,7 +697,7 @@ input, select, textarea {
 				form .message.failure:before {
 					content: '\f119';
 				}
-
+*/
 	label {
 		color: #fff;
 		display: block;
@@ -815,7 +824,7 @@ input, select, textarea {
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+		/*width: 100%;*/
 	}
 
 		input[type="text"]:invalid,
@@ -1051,12 +1060,12 @@ input, select, textarea {
 /* Header */
 
 	#header h1 {
-		font-size: 3.25em;
+		font-size: 2.25em;
 		margin: 0 0 0.55em 0;
 	}
 
 	#header p {
-		font-size: 1.35em;
+		font-size: 1em;
 		line-height: 1.65em;
 	}
 
@@ -1129,7 +1138,7 @@ input, select, textarea {
 
 				#signup-form .message {
 					bottom: -1.5em;
-					font-size: 0.9em;
+					font-size: 0.5em;
 					height: 1em;
 					left: 0;
 					line-height: inherit;
@@ -1150,7 +1159,7 @@ input, select, textarea {
 		color: rgba(255, 255, 255, 0.5);
 		left: 4em;
 		opacity: 0.5;
-		position: absolute;
+		position: relative;
 	}
 
 		#footer .icons {

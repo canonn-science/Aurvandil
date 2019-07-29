@@ -66,7 +66,7 @@
 				script.src = "https://www.edsm.net/js/embed.js"; 
 				document.getElementsByTagName("head")[0].appendChild(script);
 				
-				//$('#json-renderer').html(prettyPrintJson.toHtml(json));
+				$('#json-renderer').html(prettyPrintJson.toHtml(json));
 				
 			}
 			function doDecode(origin,data){
@@ -87,12 +87,12 @@
 			   <form id="form" onsubmit="return submitform();">
 					<table>
 						<tr>
-							<td class="label"><label for="origin">Origin:</label></td>
+							
 							<td><input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL" name="origin" id="origin" ></td>
 						</tr>
 						<tr>
-							<td class="label"><label for="data">Decoded:</label></td>
-							<td><textarea id="data" placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001&#10;&#10;010 010 | 001 111 101&#10;011 111 | 001 111 101 000&#10;010 111 101 | 011 001 000&#10;&#10;010 010 111 | 001 111 101 000&#10;001 | 011 001&#10;001 110 101 001 | 001 111 101 000&#10;&#10;You can use either '010 100' or 'lhl lhh' syntax."
+							
+							<td><textarea id="data" placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
 									name="data" id="data"></textarea></td>
 						</tr>
 					</table>

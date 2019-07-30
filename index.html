@@ -62,35 +62,39 @@
 			function updateScreen(json){
 				console.log(json.result);
 				$("#result").text(json.Result.name);
-				$("#result").html('<div id="result"><p>Result: '+json.Result.name+' '+json.Result.result+'</p><blockquote class="edsm-embed" lang="en" data-value="'+json.Result.name+'"><a href="https://www.edsm.net/" target="_blank">EDSM - Elite Dangerous Star Map</a></blockquote></div>');
-				var script = document.createElement("script");
-				script.type = "text/javascript";
-				script.src = "https://www.edsm.net/js/embed.js"; 
-				document.getElementsByTagName("head")[0].appendChild(script);
 				
-                var table = new Tabulator("#results-table", {
-                    data:json.candidates,           //load row data from array
-                    layout:"fitColumns",      //fit columns to width of table
-                    responsiveLayout:"hide",  //hide columns that dont fit on the table
-                    tooltips:true,            //show tool tips on cells
-                    addRowPos:"top",          //when adding a new row, add it to the top of the table
-                    history:true,             //allow undo and redo actions on the table
-                    pagination:"local",       //paginate the data
-                    paginationSize:20,         //allow 7 rows per page of data
-                    movableColumns:true,      //allow column order to be changed
-                    resizableRows:true,       //allow row order to be changed
-                    initialSort:[             //set the initial sort order of the data
-                        {column:"matches", dir:"desc"},
-                        {column:"control", dir:"asc"},
-                    ],
-                    columns:[                 //define the table columns
-                        {title:"Name", field:"name"},
-                        {title:"Error Ly", field:"error", align:"left" ,sorter:"number"},                  
-                        {title:"Control Ly", field:"control", align:"left", sorter:"number"},                  
-                        {title:"Matches", field:"matches", formatter:"star", align:"center", width:100, editor:false,  formatterParams:{stars:3}, sorter:"number"},
-                        
-                    ],
-                });
+                if (json.Result.name != 'n/a') {
+                    $("#result").html('<div id="result"><p>Result: '+json.Result.name+' '+json.Result.result+'</p><blockquote class="edsm-embed" lang="en" data-value="'+json.Result.name+'"><a href="https://www.edsm.net/" target="_blank">EDSM - Elite Dangerous Star Map</a></blockquote></div>');
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = "https://www.edsm.net/js/embed.js"; 
+                    document.getElementsByTagName("head")[0].appendChild(script);
+                    var table = new Tabulator("#results-table", {
+                        data:json.candidates,           //load row data from array
+                        layout:"fitColumns",      //fit columns to width of table
+                        responsiveLayout:"hide",  //hide columns that dont fit on the table
+                        tooltips:true,            //show tool tips on cells
+                        addRowPos:"top",          //when adding a new row, add it to the top of the table
+                        history:true,             //allow undo and redo actions on the table
+                        pagination:"local",       //paginate the data
+                        paginationSize:20,         //allow 7 rows per page of data
+                        movableColumns:true,      //allow column order to be changed
+                        resizableRows:true,       //allow row order to be changed
+                        initialSort:[             //set the initial sort order of the data
+                            {column:"matches", dir:"desc"},
+                            {column:"control", dir:"asc"},
+                        ],
+                        columns:[                 //define the table columns
+                            {title:"Name", field:"name"},
+                            {title:"Error Ly", field:"error", align:"left" ,sorter:"number"},                  
+                            {title:"Control Ly", field:"control", align:"left", sorter:"number"},                  
+                            {title:"Matches", field:"matches", formatter:"star", align:"center", width:100, editor:false,  formatterParams:{stars:3}, sorter:"number"},
+                            
+                        ],
+                    });
+				} else {
+                    $("#result").html('<div id="result"><p>Result: '+json.Result.result+'</p></div>');
+                }
                 
 				//$('#json-renderer').html(prettyPrintJson.toHtml(json));
 				

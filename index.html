@@ -59,17 +59,89 @@
 				}
 			   
 			});
-			function updateScreen(json){
-				console.log(json.result);
-				$("#result").text(json.Result.name);
-				
-                if (json.Result.name != 'n/a') {
-                    $("#result").html('<div id="result"><p>Result: '+json.Result.name+' '+json.Result.result+'</p><blockquote class="edsm-embed" lang="en" data-value="'+json.Result.name+'"><a href="https://www.edsm.net/" target="_blank">EDSM - Elite Dangerous Star Map</a></blockquote></div>');
-                    var script = document.createElement("script");
-                    script.type = "text/javascript";
-                    script.src = "https://www.edsm.net/js/embed.js"; 
-                    document.getElementsByTagName("head")[0].appendChild(script);
-                    var table = new Tabulator("#results-table", {
+
+            function decodesTable(json){
+                var decodes=json.decodes
+                
+                var table = new Tabulator("#decodes-table", {
+                        data:decodes,           //load row data from array
+                        layout:"fitColumns",      //fit columns to width of table
+                        responsiveLayout:"collapse",  //hide columns that dont fit on the table
+                        tooltips:true,            //show tool   tips on cells
+                        addRowPos:"top",          //when adding a new row, add it to the top of the table
+                        history:true,             //allow undo and redo actions on the table
+                        pagination:"local",       //paginate the data
+                        paginationSize:20,         //allow 7 rows per page of data
+                        movableColumns:false,      //allow column order to be changed
+                        resizableRows:false,       //allow row order to be changed                       
+                        responsiveLayoutCollapseStartOpen:false, //hide collpased columns
+                        columns:[                 //define the table columns
+                            //{formatter:"responsiveCollapse", width:30, minWidth:30, align:"center", resizable:false, headerSort:false, minWidth: "100"},
+                            {title:"System", field:"system", headerTooltip: "The system this part of the message refers to",responsive: 0, resizable:false, minWidth: "100"},
+                            {title:"Numerator", field:"numerator", align:"left" ,sorter:"number", headerTooltip: "The number the first part of the message decodes to",responsive: 0, minWidth: "100"},                  
+                            {title:"Denominator", field:"denominator", align:"left", sorter:"number", headerTooltip: "The number the second part of the message decodes to",responsive: 0, minWidth: "100"},                  
+                            {title:"Distance Ly", field:"lightyears", align:"left", sorter:"number", headerTooltip: "The distance from the system according to the decoded message",responsive: 0, minWidth: "30"},     
+                            {title:"Validity", field:"status", align:"left", headerTooltip: "A read cross means you transposed your message incorrectly", formatter:"tickCross", sorter:"boolean", editor:false,responsive: 0},
+                            {title:"Denominator Check", field:"denominatorStatus", align:"left", headerTooltip: "The denominator should be a fraction of 1000"},     
+                            {title:"Precision Check", field:"precisionStatus", align:"left", headerTooltip: "The division should have no more than three decimal places"},     
+                        ],
+                    });
+                    $("#decodes-table .tabulator-footer").hide();
+            }
+
+            function coordsTable(json){
+                
+                var v=json.trilateration.coords;
+                
+                var coords=[
+                 { x1: v[0][0],y1: v[0][1],z1: v[0][2], x2: v[1][0],y2: v[1][1],z2: v[1][2], spread: json.trilateration.spread },   
+                ]
+                
+                var table = new Tabulator("#coords-table", {
+                        data:coords,           //load row data from array
+                        layout:"fitColumns",      //fit columns to width of table
+                        responsiveLayout:"hide",  //hide columns that dont fit on the table
+                        tooltips:false,            //show tool   tips on cells
+                        addRowPos:"top",          //when adding a new row, add it to the top of the table
+                        history:true,             //allow undo and redo actions on the table
+                        pagination:"local",       //paginate the data
+                        paginationSize:20,         //allow 7 rows per page of data                        
+                        movableColumns:false,      //allow column order to be changed
+                        resizableRows:false,       //allow row order to be changed                       
+                        columns:[ 
+                            {title:"Spread", field: "spread", align:"left" ,sorter:"number"},                  
+                            {
+                                title: "Trilateration 1",
+                                columns:[                 //define the table columns
+                                    //{formatter:"responsiveCollapse", width:30, minWidth:30, align:"center", resizable:false, headerSort:false, minWidth: "100"},
+                                   
+                                    {title:"x", field: "x1", align:"left" ,sorter:"number"},                  
+                                    {title:"y", field: "y1", align:"left", sorter:"number"},                  
+                                    {title:"z", field: "z1", align:"left", sorter:"number"},     
+                                    
+                                ]
+                            },
+                            {
+                                title: "Trilateration 2",
+                                columns:[                 //define the table columns
+                                    //{formatter:"responsiveCollapse", width:30, minWidth:30, align:"center", resizable:false, headerSort:false, minWidth: "100"},
+                                   
+                                    {title:"x", field: "x2", align:"left" ,sorter:"number"},                  
+                                    {title:"y", field: "y2", align:"left", sorter:"number"},                  
+                                    {title:"z", field: "z2", align:"left", sorter:"number"},     
+                                    
+                                ]
+                            },
+                        
+                        ]
+                        
+                    });
+                    $("#coords-table .tabulator-footer").hide();
+            }
+            
+            
+            function candidatesTable(json){
+                var table = new Tabulator("#results-table", {
                         data:json.candidates,           //load row data from array
                         layout:"fitColumns",      //fit columns to width of table
                         responsiveLayout:"hide",  //hide columns that dont fit on the table
@@ -91,9 +163,26 @@
                             {title:"Matches", field:"matches", formatter:"star", align:"center", width:100, editor:false,  formatterParams:{stars:3}, sorter:"number"},
                             
                         ],
-                    });
+                    });            
+            }
+            
+			function updateScreen(json){
+				console.log(json.result);
+				$("#result").text(json.Result.name);
+				
+                if (json.Result.name != 'n/a') {
+                    $("#result").html('<div id="result"><p>Result: '+json.Result.name+' '+json.Result.result+'</p><blockquote class="edsm-embed" lang="en" data-value="'+json.Result.name+'"><a href="https://www.edsm.net/" target="_blank">EDSM - Elite Dangerous Star Map</a></blockquote></div>');
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = "https://www.edsm.net/js/embed.js"; 
+                    document.getElementsByTagName("head")[0].appendChild(script);
+                    
+                    decodesTable(json);
+                    coordsTable(json);
+                    candidatesTable(json);
 				} else {
                     $("#result").html('<div id="result"><p>Result: '+json.Result.result+'</p></div>');
+                    decodesTable(json);
                 }
                 
 				//$('#json-renderer').html(prettyPrintJson.toHtml(json));
@@ -126,8 +215,13 @@
 			
 				</form>
             <p>
-			<div id="result">&nbsp;</div>
-            </p>
+            <div id="result">&nbsp;</div>
+            </p><p>
+            <div id="decodes-table"></div>
+            <p>
+            <div id="coords-table"></div>
+			</p>
+            
             <div id="results-table"></div>
             
 			<pre id="json-renderer"></pre>

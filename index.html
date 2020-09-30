@@ -207,61 +207,25 @@
 			return false;
 		};
 	</script>
-	<script>
-		// Instantiate the Bloodhound suggestion engine
-		const movies = new Bloodhound({
-			datumTokenizer: datum => Bloodhound.tokenizers.whitespace(datum.value),
-			queryTokenizer: Bloodhound.tokenizers.whitespace,
-			/*remote: {
-				//url: 'https://us-central1-canonn-api-236217.cloudfunctions.net/systems?q=%QUERY',
-				//url: 'https://spansh.co.uk/api/systems/field_values/system_names?q=%QUERY',
-				url: 'https://spansh.co.uk/api/systems/field_values/system_names?q=%QUERY',
-				// Map the remote source JSON array to a JavaScript object array
-				dataType: 'jsonp',
-				filter: movies => $.map(movies.results, function (movie) {
-					console.log(movie)
-					return { value: movie }
-				})
-			}*/
-			remote: {
-				dataType: 'jsonp',
-				url: 'https://spansh.co.uk/api/systems/field_values/system_names?q=%QUERY',
-				// Map the remote source JSON array to a JavaScript object array
-				filter: movies => $.map(movies.values, function (movie) {
-					//console.log(movie)
-					return { value: movie }
-				})
-			}
-		});
 
-		// Initialize the Bloodhound suggestion engine
-		movies.initialize();
-
-		// Instantiate the Typeahead UI
-		$('.typeahead').typeahead(null, {
-			displayKey: 'value',
-			minLength: 3,
-			source: movies.ttAdapter()
-
-		});
-	</script>
 	<div>
-		<div id="search-container">
-			<form id="form" method="GET">
 
-				<input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL"
-					name="origin" id="origin" class="typeahead">
-				<P>
-					<textarea id="data"
-						placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
-						name="data" id="data"></textarea><br />
-				</P>
+		<form id="form" method="GET">
 
-				<input type="submit" value="Search" />
+			<input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL"
+				name="origin" id="origin" class="typeahead">
+			<br>
+
+			<textarea id="data"
+				placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
+				name="data" id="data"></textarea><br />
+
+			<br>
+			<input type="submit" value="Search" />
 
 
-			</form>
-		</div>
+		</form>
+
 		<p>
 		<div id="result">&nbsp;</div>
 		</p>
@@ -318,7 +282,44 @@
 		</div>
 
 	</div>
+	<script>
+		// Instantiate the Bloodhound suggestion engine
+		const movies = new Bloodhound({
+			datumTokenizer: datum => Bloodhound.tokenizers.whitespace(datum.value),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			/*remote: {
+				//url: 'https://us-central1-canonn-api-236217.cloudfunctions.net/systems?q=%QUERY',
+				//url: 'https://spansh.co.uk/api/systems/field_values/system_names?q=%QUERY',
+				url: 'https://spansh.co.uk/api/systems/field_values/system_names?q=%QUERY',
+				// Map the remote source JSON array to a JavaScript object array
+				dataType: 'jsonp',
+				filter: movies => $.map(movies.results, function (movie) {
+					console.log(movie)
+					return { value: movie }
+				})
+			}*/
+			remote: {
+				dataType: 'jsonp',
+				url: 'https://spansh.co.uk/api/systems/field_values/system_names?q=%QUERY',
+				// Map the remote source JSON array to a JavaScript object array
+				filter: movies => $.map(movies.values, function (movie) {
+					//console.log(movie)
+					return { value: movie }
+				})
+			}
+		});
 
+		// Initialize the Bloodhound suggestion engine
+		movies.initialize();
+
+		// Instantiate the Typeahead UI
+		$('.typeahead').typeahead(null, {
+			displayKey: 'value',
+			minLength: 3,
+			source: movies.ttAdapter()
+
+		});
+	</script>
 	</div><!-- /.container -->
 	</div>
 	<!-- Footer -->

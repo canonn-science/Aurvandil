@@ -246,19 +246,22 @@
 		});
 	</script>
 	<div>
-		<form id="form" method="GET">
-			<div id="search-container">
-				<input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL"
-					name="origin" id="origin" class="typeahead"><br />
-				<textarea id="data"
-					placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
-					name="data" id="data"></textarea><br />
+		<div id="search-container">
+			<form id="form" method="GET">
 
+				<input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL"
+					name="origin" id="origin" class="typeahead">
+				<P>
+					<textarea id="data"
+						placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
+						name="data" id="data"></textarea><br />
+				</P>
 
 				<input type="submit" value="Search" />
-			</div>
 
-		</form>
+
+			</form>
+		</div>
 		<p>
 		<div id="result">&nbsp;</div>
 		</p>

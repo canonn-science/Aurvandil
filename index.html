@@ -245,67 +245,79 @@
 
 		});
 	</script>
-	<form id="form" method="GET" class="typeahead">
-		<div id="search-container">
-			<input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL"
-				name="origin" id="origin"><br />
-			<textarea id="data"
-				placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
-				name="data" id="data"></textarea><br />
+	<div>
+		<form id="form" method="GET" class="typeahead">
+			<div id="search-container">
+				<input type="text" placeholder="Name of the system that yielded the audio used to trigger the UL"
+					name="origin" id="origin"><br />
+				<textarea id="data"
+					placeholder="Transcribe the binary transmission, for example:&#10;&#10;010 011 101 | 001 111 101 000&#10;011 111 | 001 111 101 000&#10;011 000 | 011001 &#10; &#10; You can use either '010 100' or 'lhl lhh' syntax."
+					name="data" id="data"></textarea><br />
 
 
-			<input type="submit" value="Search" />
+				<input type="submit" value="Search" />
+			</div>
+
+		</form>
+		<p>
+		<div id="result">&nbsp;</div>
+		</p>
+		<p>
+		<div id="decodes-table"></div>
+		<p>
+		<div id="coords-table"></div>
+		</p>
+
+		<div id="results-table"></div>
+
+		<pre id="json-renderer"></pre>
+
+		</p>
+		<div class="row">
+			<div class="col-12">
+				<p>
+					The thargoid link message is a puzzle that provides us with the distances of an unknown system
+					relative
+					to three known systems. By a process of triangulation we are able to identify a pair of 3D
+					coordinates
+					one of which is the location of the unknown system.
+				</p>
+				<p>
+					However the link messages are calculated with a precision of three decimal places which means that
+					the
+					distances are not accurate enough to give us the precise location so we must search through a list
+					of
+					known stars to identify stars that are close to the calculated coordinates. Each candidate system
+					has a
+					error value measured in light years.
+				</p>
+				<p>
+					Once we have a list of candidate systems, we can run the calculation is reverse to give us the
+					distances
+					using the same precision used by the Thargoids to calculate their message. If we have identified the
+					correct system then the recalculated distances will match the distances given in the message. We use
+					the
+					recalulated distances to generate a pair of coordinates and then compare these to the original
+					decoded
+					coordinates to give us a control value measured in ly. An exact match on the system would have a
+					control
+					value of exctly 0ly.
+				</p>
+				<p>
+					We also check to see if any of the recalculated distances match the original distances and this
+					gives us
+					a match value between 1 and 3. If we get a control value or zero and match value of 3 then we can be
+					certain that we have the correct coordinates.
+				</p>
+				<p>
+				</p>
+			</div>
 		</div>
-
-	</form>
-	<p>
-	<div id="result">&nbsp;</div>
-	</p>
-	<p>
-	<div id="decodes-table"></div>
-	<p>
-	<div id="coords-table"></div>
-	</p>
-
-	<div id="results-table"></div>
-
-	<pre id="json-renderer"></pre>
-
-	</p>
-	<div class="row">
-		<div class="col-12">
-			<p>
-				The thargoid link message is a puzzle that provides us with the distances of an unknown system relative
-				to three known systems. By a process of triangulation we are able to identify a pair of 3D coordinates
-				one of which is the location of the unknown system.
-			</p>
-			<p>
-				However the link messages are calculated with a precision of three decimal places which means that the
-				distances are not accurate enough to give us the precise location so we must search through a list of
-				known stars to identify stars that are close to the calculated coordinates. Each candidate system has a
-				error value measured in light years.
-			</p>
-			<p>
-				Once we have a list of candidate systems, we can run the calculation is reverse to give us the distances
-				using the same precision used by the Thargoids to calculate their message. If we have identified the
-				correct system then the recalculated distances will match the distances given in the message. We use the
-				recalulated distances to generate a pair of coordinates and then compare these to the original decoded
-				coordinates to give us a control value measured in ly. An exact match on the system would have a control
-				value of exctly 0ly.
-			</p>
-			<p>
-				We also check to see if any of the recalculated distances match the original distances and this gives us
-				a match value between 1 and 3. If we get a control value or zero and match value of 3 then we can be
-				certain that we have the correct coordinates.
-			</p>
-			<p>
-			</p>
-		</div>
-	</div>
 
 	</div>
 
 	</div><!-- /.container -->
+	</div>
 	<!-- Footer -->
 	<footer id="footer">
 		<ul class="icons">

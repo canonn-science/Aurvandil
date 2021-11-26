@@ -1,5 +1,7 @@
 # Aurvandil (Norse god of the stars)
 
+__**This repo is now archived, it's code has been moved to our Tools Mono-repo: https://github.com/canonn-science/canonn-tools**__
+
 Thargoid Link Decoder
 
 This is a replacement for the link decoder at [jubjubnest](http://jubjubnest.net:8001/?origin=hip+21251&data=hhl+hlh+llh+lhl+%2F+lll+llh+lhh%0D%0Ahlh+hll+lll+%2F+hhl+lll+lhl+%0D%0Ahhl+lll+hhl+%2F+hhl+lll+lhl+)
